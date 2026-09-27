@@ -6,9 +6,9 @@ import SiteFooter from '../components/SiteFooter.astro';
 
 const base = import.meta.env.BASE_URL;
 const home = base.endsWith('/') ? base : `${base}/`;
-const pageTitle = 'Ferx Technologies — Move work forward, together';
+const pageTitle = 'Ferx Technologies — FerxFlow';
 const description =
-  'Ferx gives software, IT, and business teams one connected place to plan, build, share, and support the work that matters.';
+  'FerxFlow is project planning and workflow management for teams that want clarity from idea to delivery.';
 const canonical = new URL(home, Astro.site);
 
 const products = [
@@ -18,31 +18,6 @@ const products = [
     accent: '#1d4ed8',
     tint: '#eff4ff',
     description: 'Project planning and workflow management for teams that want clarity from idea to delivery.',
-    icon: 'flow',
-  },
-  {
-    id: 'ferxdocs',
-    name: 'FerxDocs',
-    accent: '#0891b2',
-    tint: '#ecfeff',
-    description: 'A connected workspace for documentation, decisions, knowledge, and team collaboration.',
-    icon: 'docs',
-  },
-  {
-    id: 'ferxdesk',
-    name: 'FerxDesk',
-    accent: '#6d28d9',
-    tint: '#f5f3ff',
-    description: 'A modern service desk for managing IT requests, support operations, and internal workflows.',
-    icon: 'desk',
-  },
-  {
-    id: 'ferxai',
-    name: 'FerxAI',
-    accent: '#7c3aed',
-    tint: '#faf5ff',
-    description: 'Intelligent assistance that helps teams find answers, automate repetitive work, and make better decisions.',
-    icon: 'ai',
   },
 ];
 
@@ -85,8 +60,8 @@ const tasks = {
 
     <div class="announce" role="region" aria-label="Announcement">
       <p>
-        Introducing FerxAI — smarter work for modern teams.
-        <a href={`${home}#ferxai`}>Explore what’s new <span aria-hidden="true">→</span></a>
+        FerxFlow is here — plan and track work from idea to delivery.
+        <a href={`${home}#ferxflow`}>Explore FerxFlow <span aria-hidden="true">→</span></a>
       </p>
     </div>
 
@@ -96,12 +71,12 @@ const tasks = {
       <section class="hero" aria-labelledby="hero-title">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Collaboration platform</p>
-            <h1 id="hero-title">Move work forward, together.</h1>
+            <p class="eyebrow">FerxFlow</p>
+            <h1 id="hero-title">Plan the work. Ship it.</h1>
             <p class="lede">{description}</p>
             <div class="cta-row">
               <a class="btn btn-primary" href={`${home}contact`}>Get started</a>
-              <a class="btn btn-secondary" href={`${home}#products`}>Explore the platform</a>
+              <a class="btn btn-secondary" href={`${home}#ferxflow`}>Explore FerxFlow</a>
             </div>
           </div>
 
@@ -109,7 +84,7 @@ const tasks = {
             <div class="board-top">
               <div>
                 <p class="board-kicker">FerxFlow</p>
-                <h2>Platform launch</h2>
+                <h2>Release planning</h2>
               </div>
               <div class="progress">
                 <div class="progress-meta">
@@ -170,24 +145,13 @@ const tasks = {
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Product</p>
-            <h2 id="products-title">One platform, four ways to move work</h2>
+            <h2 id="products-title">FerxFlow for how your team plans work</h2>
           </div>
           <div class="product-grid">
             {products.map((product) => (
               <article id={product.id} class="product-card" style={`--accent:${product.accent};--tint:${product.tint}`}>
                 <div class="product-icon" aria-hidden="true">
-                  {product.icon === 'flow' && (
-                    <svg viewBox="0 0 32 32"><rect x="4" y="6" width="8" height="20" rx="2"></rect><rect x="14" y="6" width="6" height="12" rx="2"></rect><rect x="22" y="6" width="6" height="16" rx="2"></rect></svg>
-                  )}
-                  {product.icon === 'docs' && (
-                    <svg viewBox="0 0 32 32"><path d="M8 5h11l5 5v17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"></path><path d="M18 5v6h6M10 16h12M10 21h8"></path></svg>
-                  )}
-                  {product.icon === 'desk' && (
-                    <svg viewBox="0 0 32 32"><path d="M6 12h20v10a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V12z"></path><path d="M11 12V9a5 5 0 0 1 10 0v3"></path></svg>
-                  )}
-                  {product.icon === 'ai' && (
-                    <svg viewBox="0 0 32 32"><path d="M16 4l2.2 6.4L25 13l-6.8 2.6L16 22l-2.2-6.4L7 13l6.8-2.6L16 4z"></path><path d="M24 20l1 2.6L28 24l-3 .9L24 28l-1-3.1-3-.9 3-1.4L24 20z"></path></svg>
-                  )}
+                  <svg viewBox="0 0 32 32"><rect x="4" y="6" width="8" height="20" rx="2"></rect><rect x="14" y="6" width="6" height="12" rx="2"></rect><rect x="22" y="6" width="6" height="16" rx="2"></rect></svg>
                 </div>
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
@@ -209,8 +173,8 @@ const tasks = {
               <div class="line-icon" aria-hidden="true">
                 <svg viewBox="0 0 32 32"><circle cx="8" cy="16" r="3"></circle><circle cx="24" cy="8" r="3"></circle><circle cx="24" cy="24" r="3"></circle><path d="M11 15l10-6M11 17l10 6"></path></svg>
               </div>
-              <h3>One connected workspace</h3>
-              <p>Bring planning, documentation, support, and collaboration together.</p>
+              <h3>One place for the work</h3>
+              <p>Keep backlog, sprints, and delivery status in FerxFlow.</p>
             </article>
             <article>
               <div class="line-icon" aria-hidden="true">
@@ -223,8 +187,8 @@ const tasks = {
               <div class="line-icon" aria-hidden="true">
                 <svg viewBox="0 0 32 32"><path d="M6 22c4-8 6-8 10-4s6 4 10-6"></path><path d="M20 8h6v6"></path></svg>
               </div>
-              <h3>Ready for what’s next</h3>
-              <p>Automation and AI that help teams spend less time on busywork.</p>
+              <h3>Clear from idea to done</h3>
+              <p>See what is planned, in progress, and finished without extra tools.</p>
             </article>
           </div>
         </div>
@@ -239,18 +203,18 @@ const tasks = {
           <div class="solution-grid">
             <article id="software-teams" class="solution solution-soft">
               <h3>Software teams</h3>
-              <p>Plan releases, manage sprints, document decisions, and ship better products together.</p>
+              <p>Plan releases, manage sprints, and ship with a shared board in FerxFlow.</p>
               <a href={`${home}#ferxflow`}>See how it works <span aria-hidden="true">→</span></a>
             </article>
             <article id="it-teams" class="solution solution-it">
               <h3>IT teams</h3>
-              <p>Organize service requests, resolve issues faster, and create a better employee support experience.</p>
-              <a href={`${home}#ferxdesk`}>See how it works <span aria-hidden="true">→</span></a>
+              <p>Track internal projects, requests, and delivery work in one FerxFlow board.</p>
+              <a href={`${home}#ferxflow`}>See how it works <span aria-hidden="true">→</span></a>
             </article>
             <article id="business-teams" class="solution solution-biz">
               <h3>Business teams</h3>
-              <p>Connect goals, projects, knowledge, and operations across the organization.</p>
-              <a href={`${home}#ferxdocs`}>See how it works <span aria-hidden="true">→</span></a>
+              <p>Turn goals into projects and keep status visible in FerxFlow.</p>
+              <a href={`${home}#ferxflow`}>See how it works <span aria-hidden="true">→</span></a>
             </article>
           </div>
         </div>
@@ -258,13 +222,13 @@ const tasks = {
 
       <section class="proof" aria-labelledby="proof-title">
         <div class="container">
-          <h2 id="proof-title">Teams use Ferx to keep work moving</h2>
+          <h2 id="proof-title">Teams use FerxFlow to keep work moving</h2>
           <p class="proof-note">Illustrative marketing statistics for this launch site.</p>
           <dl class="stats">
-            <div><dt>10K+ teams connected</dt><dd>Teams on the platform</dd></div>
-            <div><dt>2M+ work items managed</dt><dd>Work tracked in Ferx</dd></div>
+            <div><dt>10K+ teams connected</dt><dd>Teams on FerxFlow</dd></div>
+            <div><dt>2M+ work items managed</dt><dd>Work tracked in FerxFlow</dd></div>
             <div><dt>35% faster delivery</dt><dd>Reported delivery pace</dd></div>
-            <div><dt>99.9% platform availability</dt><dd>Target availability</dd></div>
+            <div><dt>99.9% availability</dt><dd>Target availability</dd></div>
           </dl>
           <p class="logo-label">Example customer wordmarks</p>
           <ul class="logos" aria-label="Example customer names">
@@ -280,7 +244,7 @@ const tasks = {
       <section class="banner" aria-labelledby="banner-title">
         <div class="container banner-inner">
           <h2 id="banner-title">Make work work better.</h2>
-          <p>Bring your teams, tools, and ideas together with Ferx Technologies.</p>
+          <p>Plan and track delivery with FerxFlow from Ferx Technologies.</p>
           <div class="cta-row">
             <a class="btn btn-light" href={`${home}contact`}>Start building</a>
             <a class="btn btn-outline-light" href={`${home}contact`}>Talk to our team</a>
