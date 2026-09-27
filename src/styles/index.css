@@ -320,8 +320,11 @@ h1, .page h1 {
 .why-grid,
 .solution-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
+}
+
+.product-grid {
+  grid-template-columns: minmax(0, 360px);
 }
 
 .why-grid,
@@ -612,7 +615,6 @@ h1, .page h1 {
 
 @media (max-width: 980px) {
   .hero-grid,
-  .product-grid,
   .stats,
   .footer-grid {
     grid-template-columns: 1fr 1fr;
