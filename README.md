@@ -42,7 +42,7 @@ Deployed via GitHub Pages on every push to `main`.
 - **Announcement bar** — product news strip
 - **Navigation** — sticky header with mobile hamburger menu
 - **Hero** — headline, CTAs, sprint board mockup
-- **Products** — FerxFlow, FerxDocs, FerxDesk, FerxAI
+- **Product** — FerxFlow
 - **Why Ferx?** — three feature columns
 - **Solutions** — Software, IT, and Business team cards
 - **Stats** — social proof numbers and customer logos
