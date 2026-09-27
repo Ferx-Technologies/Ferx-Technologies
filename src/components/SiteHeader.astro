@@ -1,0 +1,73 @@
+---
+const base = import.meta.env.BASE_URL;
+const home = base.endsWith('/') ? base : `${base}/`;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={home} aria-label="Ferx Technologies home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <rect width="32" height="32" rx="8" fill="#0B1220"></rect>
+        <path d="M9 8.5h9.2c3.4 0 5.6 1.9 5.6 4.7 0 2.1-1.3 3.6-3.3 4.2L24.2 24h-3.7l-3.2-6.2H12.4V24H9V8.5zm3.4 2.7v4.2h5.2c1.6 0 2.6-.8 2.6-2.1s-1-2.1-2.6-2.1H12.4z" fill="#7C8CFF"></path>
+        <rect x="9" y="24.8" width="8" height="2.2" rx="1.1" fill="#22D3EE"></rect>
+      </svg>
+      <span>Ferx Technologies</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary">
+      <a href={`${home}#products`}>Product</a>
+      <a href={`${home}#solutions`}>Solutions</a>
+      <a href={`${home}#why-ferx`}>Why Ferx?</a>
+      <a href={`${home}#resources`}>Resources</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-ghost" href={`${home}contact`}>Sign in</a>
+      <a class="btn btn-primary" href={`${home}contact`}>Get started</a>
+    </div>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Open menu"
+    >
+      <span class="menu-bars" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav" hidden aria-label="Mobile">
+    <a href={`${home}#products`}>Product</a>
+    <a href={`${home}#solutions`}>Solutions</a>
+    <a href={`${home}#why-ferx`}>Why Ferx?</a>
+    <a href={`${home}#resources`}>Resources</a>
+    <a class="btn btn-ghost" href={`${home}contact`}>Sign in</a>
+    <a class="btn btn-primary" href={`${home}contact`}>Get started</a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('mobile-nav');
+
+  function setOpen(open) {
+    if (!toggle || !menu) return;
+    menu.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('nav-open', open);
+  }
+
+  toggle?.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
+  });
+</script>

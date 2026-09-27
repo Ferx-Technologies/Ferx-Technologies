@@ -1,0 +1,75 @@
+---
+const base = import.meta.env.BASE_URL;
+const home = base.endsWith('/') ? base : `${base}/`;
+const year = 2025;
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand footer-brand" href={home}>
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <rect width="32" height="32" rx="8" fill="#7C8CFF"></rect>
+          <path d="M9 8.5h9.2c3.4 0 5.6 1.9 5.6 4.7 0 2.1-1.3 3.6-3.3 4.2L24.2 24h-3.7l-3.2-6.2H12.4V24H9V8.5zm3.4 2.7v4.2h5.2c1.6 0 2.6-.8 2.6-2.1s-1-2.1-2.6-2.1H12.4z" fill="#0B1220"></path>
+        </svg>
+        <span>Ferx Technologies</span>
+      </a>
+      <p class="footer-summary">
+        A collaboration platform for software, IT, and business teams to plan, build, share, and support work together.
+      </p>
+      <ul class="social-row">
+        <li><a href={`${home}contact`} aria-label="Ferx on LinkedIn">LinkedIn</a></li>
+        <li><a href={`${home}contact`} aria-label="Ferx on X">X</a></li>
+        <li><a href="https://github.com/Ferx-Technologies/Ferx-Technologies" aria-label="Ferx on GitHub">GitHub</a></li>
+      </ul>
+    </div>
+
+    <nav aria-labelledby="footer-products">
+      <h2 id="footer-products">Products</h2>
+      <ul>
+        <li><a href={`${home}#ferxflow`}>FerxFlow</a></li>
+        <li><a href={`${home}#ferxdocs`}>FerxDocs</a></li>
+        <li><a href={`${home}#ferxdesk`}>FerxDesk</a></li>
+        <li><a href={`${home}#ferxai`}>FerxAI</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-labelledby="footer-solutions">
+      <h2 id="footer-solutions">Solutions</h2>
+      <ul>
+        <li><a href={`${home}#software-teams`}>Software teams</a></li>
+        <li><a href={`${home}#it-teams`}>IT teams</a></li>
+        <li><a href={`${home}#business-teams`}>Business teams</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-split">
+      <nav aria-labelledby="footer-company">
+        <h2 id="footer-company">Company</h2>
+        <ul>
+          <li><a href={`${home}contact#about`}>About</a></li>
+          <li><a href={`${home}contact#careers`}>Careers</a></li>
+          <li><a href={`${home}contact`}>Contact</a></li>
+          <li><a href={`${home}contact#security`}>Security</a></li>
+        </ul>
+      </nav>
+      <nav id="resources" aria-labelledby="footer-resources">
+        <h2 id="footer-resources">Resources</h2>
+        <ul>
+          <li><a href={`${home}contact#documentation`}>Documentation</a></li>
+          <li><a href={`${home}contact#help`}>Help center</a></li>
+          <li><a href={`${home}contact#blog`}>Blog</a></li>
+          <li><a href={`${home}contact#status`}>Status</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container footer-legal">
+    <p>© {year} Ferx Technologies. All rights reserved.</p>
+    <ul>
+      <li><a href={`${home}contact#privacy`}>Privacy</a></li>
+      <li><a href={`${home}contact#terms`}>Terms</a></li>
+    </ul>
+  </div>
+</footer>
