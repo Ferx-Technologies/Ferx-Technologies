@@ -1,548 +1,294 @@
 ---
 import '../styles/global.css';
 import '../styles/index.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const base = import.meta.env.BASE_URL;
+const home = base.endsWith('/') ? base : `${base}/`;
+const pageTitle = 'Ferx Technologies — Move work forward, together';
+const description =
+  'Ferx gives software, IT, and business teams one connected place to plan, build, share, and support the work that matters.';
+const canonical = new URL(home, Astro.site);
 
 const products = [
   {
     id: 'ferxflow',
     name: 'FerxFlow',
-    tagline: 'Agile project management',
-    description:
-      'Plan, track, and release software with powerful boards, roadmaps, and sprint planning built for modern engineering teams.',
-    color: '#0052CC',
-    bg: '#DEEBFF',
+    accent: '#1d4ed8',
+    tint: '#eff4ff',
+    description: 'Project planning and workflow management for teams that want clarity from idea to delivery.',
     icon: 'flow',
   },
   {
     id: 'ferxdocs',
     name: 'FerxDocs',
-    tagline: 'Team knowledge base',
-    description:
-      'Create, organize, and share documentation across your entire organization — from onboarding guides to architecture decisions.',
-    color: '#00B8D9',
-    bg: '#E6FCFF',
+    accent: '#0891b2',
+    tint: '#ecfeff',
+    description: 'A connected workspace for documentation, decisions, knowledge, and team collaboration.',
     icon: 'docs',
   },
   {
     id: 'ferxdesk',
     name: 'FerxDesk',
-    tagline: 'IT service management',
-    description:
-      'Deliver exceptional service experiences with smart request routing, SLA tracking, and intelligent automation at scale.',
-    color: '#6554C0',
-    bg: '#EAE6FF',
+    accent: '#6d28d9',
+    tint: '#f5f3ff',
+    description: 'A modern service desk for managing IT requests, support operations, and internal workflows.',
     icon: 'desk',
   },
   {
     id: 'ferxai',
     name: 'FerxAI',
-    tagline: 'Intelligent team assistant',
-    description:
-      'AI-powered insights and automation that learns your workflow, surfaces blockers early, and accelerates team productivity.',
-    color: '#FF5630',
-    bg: '#FFEBE6',
+    accent: '#7c3aed',
+    tint: '#faf5ff',
+    description: 'Intelligent assistance that helps teams find answers, automate repetitive work, and make better decisions.',
     icon: 'ai',
   },
 ];
 
-const features = [
-  {
-    icon: 'scale',
-    title: 'Scale with confidence',
-    body: 'From a 5-person startup to a 50,000-person enterprise, Ferx grows with your team. Our infrastructure handles billions of events daily so you never have to think about scaling.',
-  },
-  {
-    icon: 'connect',
-    title: 'Connect every team',
-    body: 'Break down silos with 3,000+ integrations. Ferx tools connect natively with GitHub, Slack, Salesforce, and hundreds more to keep your entire organization aligned.',
-  },
-  {
-    icon: 'secure',
-    title: 'Enterprise-grade security',
-    body: 'SOC 2 Type II certified. GDPR compliant. SSO, advanced permission controls, and full audit logs give your security team everything they need.',
-  },
-];
-
-const stats = [
-  { number: '200K+', label: 'Teams worldwide' },
-  { number: '190+', label: 'Countries served' },
-  { number: '99.9%', label: 'Uptime SLA' },
-  { number: '3,000+', label: 'Integrations' },
-];
-
-const customers = ['TechCorp', 'Novex', 'Solvio', 'Pulsed', 'Archon', 'Verixa'];
+const tasks = {
+  todo: [
+    { title: 'Map release checklist', type: 'Story', priority: 'High' },
+    { title: 'Write onboarding notes', type: 'Doc', priority: 'Med' },
+  ],
+  progress: [
+    { title: 'API access review', type: 'Task', priority: 'High' },
+    { title: 'Sprint demo outline', type: 'Story', priority: 'Low' },
+  ],
+  done: [
+    { title: 'Service catalog draft', type: 'Task', priority: 'Med' },
+    { title: 'Team standup template', type: 'Doc', priority: 'Low' },
+  ],
+};
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Power your team's potential with Ferx Technologies — collaboration tools for software, IT, and business teams."
-    />
-    <title>Ferx Technologies</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Ferx Technologies" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" href={`${home}favicon.svg`} type="image/svg+xml" />
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Announcement Banner -->
-    <div class="announcement-bar" role="region" aria-label="Product announcement">
-      <div class="container">
-        <p class="announcement-text">
-          <span class="announcement-badge">New</span>
-          Introducing FerxAI — your intelligent team assistant.
-          <a href="#ferxai" class="announcement-link">Learn more <span aria-hidden="true">→</span></a>
-        </p>
-      </div>
+    <div class="announce" role="region" aria-label="Announcement">
+      <p>
+        Introducing FerxAI — smarter work for modern teams.
+        <a href={`${home}#ferxai`}>Explore what’s new <span aria-hidden="true">→</span></a>
+      </p>
     </div>
 
-    <!-- Header -->
-    <header class="site-header">
-      <div class="container nav-container">
-        <a href="/" class="nav-brand" aria-label="Ferx Technologies — Go to homepage">
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true" focusable="false">
-            <rect width="34" height="34" rx="7" fill="#0052CC"/>
-            <rect x="8" y="10" width="18" height="3" rx="1.5" fill="white"/>
-            <rect x="8" y="15.5" width="13" height="3" rx="1.5" fill="white"/>
-            <rect x="8" y="21" width="9" height="3" rx="1.5" fill="white"/>
-          </svg>
-          <span class="nav-wordmark">Ferx Technologies</span>
-        </a>
+    <SiteHeader />
 
-        <nav aria-label="Primary navigation">
-          <ul class="nav-links" role="list">
-            <li><a href="#products" class="nav-link">Products</a></li>
-            <li><a href="#solutions" class="nav-link">Solutions</a></li>
-            <li><a href="#why-ferx" class="nav-link">Why Ferx?</a></li>
-            <li><a href="#pricing" class="nav-link">Pricing</a></li>
-            <li><a href="#resources" class="nav-link">Resources</a></li>
-          </ul>
-        </nav>
-
-        <div class="nav-actions">
-          <a href="#" class="btn btn-ghost">Sign in</a>
-          <a href="#" class="btn btn-primary">Get started free</a>
-        </div>
-
-        <button
-          class="nav-toggle"
-          id="nav-toggle"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-        >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="currentColor" aria-hidden="true">
-            <rect x="2" y="4" width="18" height="2" rx="1"/>
-            <rect x="2" y="10" width="18" height="2" rx="1"/>
-            <rect x="2" y="16" width="18" height="2" rx="1"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
-        <nav>
-          <ul class="mobile-nav-links" role="list">
-            <li><a href="#products" class="mobile-nav-link">Products</a></li>
-            <li><a href="#solutions" class="mobile-nav-link">Solutions</a></li>
-            <li><a href="#why-ferx" class="mobile-nav-link">Why Ferx?</a></li>
-            <li><a href="#pricing" class="mobile-nav-link">Pricing</a></li>
-            <li><a href="#resources" class="mobile-nav-link">Resources</a></li>
-          </ul>
-          <div class="mobile-nav-actions">
-            <a href="#" class="btn btn-secondary" style="width:100%;justify-content:center">Sign in</a>
-            <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">Get started free</a>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <main id="main-content">
-
-      <!-- Hero -->
-      <section class="hero" aria-labelledby="hero-heading">
-        <div class="container hero-container">
-          <div class="hero-content">
-            <div class="hero-eyebrow">
-              <span class="badge badge-blue">Collaboration Platform</span>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Collaboration platform</p>
+            <h1 id="hero-title">Move work forward, together.</h1>
+            <p class="lede">{description}</p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href={`${home}contact`}>Get started</a>
+              <a class="btn btn-secondary" href={`${home}#products`}>Explore the platform</a>
             </div>
-            <h1 id="hero-heading" class="hero-headline">
-              Power your team's<br /><span class="gradient-text">potential</span>
-            </h1>
-            <p class="hero-body">
-              Ferx Technologies brings together everything your teams need to plan, track,
-              release, and support great products — at any scale.
-            </p>
-            <div class="hero-ctas">
-              <a href="#" class="btn btn-primary btn-lg">Get started free</a>
-              <a href="#products" class="btn btn-secondary btn-lg">See all products</a>
-            </div>
-            <p class="hero-footnote">Free forever · No credit card required</p>
           </div>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="hero-dashboard">
-              <div class="dashboard-header">
-                <div class="dashboard-dots">
-                  <span></span><span></span><span></span>
-                </div>
-                <span class="dashboard-title">FerxFlow — Sprint Board</span>
+          <div class="board" aria-hidden="true">
+            <div class="board-top">
+              <div>
+                <p class="board-kicker">FerxFlow</p>
+                <h2>Platform launch</h2>
               </div>
-              <div class="dashboard-body">
-                <div class="dashboard-col">
-                  <div class="dashboard-col-label">To Do</div>
-                  <div class="task-card task-blue">
-                    <span class="task-tag">Feature</span>
-                    <p>Redesign onboarding flow</p>
-                  </div>
-                  <div class="task-card task-gray">
-                    <span class="task-tag">Bug</span>
-                    <p>Fix login redirect issue</p>
-                  </div>
+              <div class="progress">
+                <div class="progress-meta">
+                  <span>Sprint 14</span>
+                  <span>68%</span>
                 </div>
-                <div class="dashboard-col">
-                  <div class="dashboard-col-label">In Progress</div>
-                  <div class="task-card task-teal">
-                    <span class="task-tag">Improvement</span>
-                    <p>API rate limiting</p>
-                  </div>
-                  <div class="task-card task-purple">
-                    <span class="task-tag">Feature</span>
-                    <p>Dark mode support</p>
-                  </div>
-                </div>
-                <div class="dashboard-col">
-                  <div class="dashboard-col-label">Done</div>
-                  <div class="task-card task-green">
-                    <span class="task-tag">Released</span>
-                    <p>SSO integration</p>
-                  </div>
-                  <div class="task-card task-green">
-                    <span class="task-tag">Released</span>
-                    <p>Export to CSV</p>
-                  </div>
-                </div>
+                <div class="progress-track"><span style="width: 68%"></span></div>
+              </div>
+            </div>
+            <div class="board-cols">
+              <div class="col">
+                <h3>To do <span>2</span></h3>
+                {tasks.todo.map((task) => (
+                  <article class="task">
+                    <p>{task.title}</p>
+                    <div class="task-meta">
+                      <span class="pill">{task.type}</span>
+                      <span class={`pill pri-${task.priority.toLowerCase()}`}>{task.priority}</span>
+                      <span class="avatars" title="Assigned teammates">
+                        <span>AL</span><span>MK</span>
+                      </span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <div class="col">
+                <h3>In progress <span>2</span></h3>
+                {tasks.progress.map((task) => (
+                  <article class="task">
+                    <p>{task.title}</p>
+                    <div class="task-meta">
+                      <span class="pill">{task.type}</span>
+                      <span class={`pill pri-${task.priority.toLowerCase()}`}>{task.priority}</span>
+                      <span class="avatars"><span>JR</span><span>PS</span></span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <div class="col">
+                <h3>Done <span>2</span></h3>
+                {tasks.done.map((task) => (
+                  <article class="task">
+                    <p>{task.title}</p>
+                    <div class="task-meta">
+                      <span class="pill">{task.type}</span>
+                      <span class={`pill pri-${task.priority.toLowerCase()}`}>{task.priority}</span>
+                      <span class="avatars"><span>TN</span></span>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Products -->
-      <section id="products" class="products-section" aria-labelledby="products-heading">
+      <section id="products" class="section" aria-labelledby="products-title">
         <div class="container">
-          <header class="section-header">
-            <span class="section-eyebrow">Our products</span>
-            <h2 id="products-heading" class="section-heading">One platform, every team</h2>
-            <p class="section-subheading">
-              Purpose-built tools that work better together, giving every team exactly what they need.
-            </p>
-          </header>
-
-          <div class="products-grid">
-            {products.map((p) => (
-              <article
-                class="product-card"
-                id={p.id}
-                style={`--card-color:${p.color};--card-bg:${p.bg};`}
-              >
-                <div class="product-card-icon" style={`background:${p.bg};`}>
-                  {p.icon === 'flow' && (
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                      <circle cx="6" cy="14" r="4" stroke={p.color} stroke-width="2"/>
-                      <circle cx="22" cy="7" r="4" stroke={p.color} stroke-width="2"/>
-                      <circle cx="22" cy="21" r="4" stroke={p.color} stroke-width="2"/>
-                      <path d="M10 13l8-5M10 15l8 5" stroke={p.color} stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+          <div class="section-head">
+            <p class="eyebrow">Product</p>
+            <h2 id="products-title">One platform, four ways to move work</h2>
+          </div>
+          <div class="product-grid">
+            {products.map((product) => (
+              <article id={product.id} class="product-card" style={`--accent:${product.accent};--tint:${product.tint}`}>
+                <div class="product-icon" aria-hidden="true">
+                  {product.icon === 'flow' && (
+                    <svg viewBox="0 0 32 32"><rect x="4" y="6" width="8" height="20" rx="2"></rect><rect x="14" y="6" width="6" height="12" rx="2"></rect><rect x="22" y="6" width="6" height="16" rx="2"></rect></svg>
                   )}
-                  {p.icon === 'docs' && (
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                      <rect x="5" y="3" width="18" height="22" rx="2" stroke={p.color} stroke-width="2"/>
-                      <path d="M9 9h10M9 13h10M9 17h6" stroke={p.color} stroke-width="2" stroke-linecap="round"/>
-                    </svg>
+                  {product.icon === 'docs' && (
+                    <svg viewBox="0 0 32 32"><path d="M8 5h11l5 5v17a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"></path><path d="M18 5v6h6M10 16h12M10 21h8"></path></svg>
                   )}
-                  {p.icon === 'desk' && (
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                      <path d="M14 4C9.03 4 5 8.03 5 13s4.03 9 9 9" stroke={p.color} stroke-width="2" stroke-linecap="round"/>
-                      <path d="M19 13c0 2.76-2.24 5-5 5" stroke={p.color} stroke-width="2" stroke-linecap="round"/>
-                      <path d="M14 22v2M20 20l2 2M22 14h2" stroke={p.color} stroke-width="2" stroke-linecap="round"/>
-                      <circle cx="14" cy="13" r="2" fill={p.color}/>
-                    </svg>
+                  {product.icon === 'desk' && (
+                    <svg viewBox="0 0 32 32"><path d="M6 12h20v10a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V12z"></path><path d="M11 12V9a5 5 0 0 1 10 0v3"></path></svg>
                   )}
-                  {p.icon === 'ai' && (
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                      <path d="M14 3l2.1 6.3H23l-5.5 4 2.1 6.3L14 15.7l-5.6 3.9 2.1-6.3L5 9.3h6.9z" stroke={p.color} stroke-width="2" stroke-linejoin="round"/>
-                      <circle cx="22" cy="23" r="2.5" stroke={p.color} stroke-width="1.5"/>
-                      <circle cx="6" cy="22" r="1.5" stroke={p.color} stroke-width="1.5"/>
-                    </svg>
+                  {product.icon === 'ai' && (
+                    <svg viewBox="0 0 32 32"><path d="M16 4l2.2 6.4L25 13l-6.8 2.6L16 22l-2.2-6.4L7 13l6.8-2.6L16 4z"></path><path d="M24 20l1 2.6L28 24l-3 .9L24 28l-1-3.1-3-.9 3-1.4L24 20z"></path></svg>
                   )}
                 </div>
-                <h3 class="product-card-name">{p.name}</h3>
-                <p class="product-card-tagline">{p.tagline}</p>
-                <p class="product-card-desc">{p.description}</p>
-                <a href={`#${p.id}`} class="product-card-link">
-                  Learn more
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                <a href={`${home}#${product.id}`}>Learn more <span aria-hidden="true">→</span></a>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <!-- Why Ferx -->
-      <section id="why-ferx" class="features-section" aria-labelledby="features-heading">
+      <section id="why-ferx" class="section why" aria-labelledby="why-title">
         <div class="container">
-          <header class="section-header">
-            <span class="section-eyebrow">Why Ferx?</span>
-            <h2 id="features-heading" class="section-heading">Built for teams that move fast</h2>
-          </header>
-
-          <div class="features-grid">
-            {features.map((f) => (
-              <div class="feature-item">
-                <div class="feature-icon" aria-hidden="true">
-                  {f.icon === 'scale' && (
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                      <rect width="48" height="48" rx="12" fill="#DEEBFF"/>
-                      <path d="M24 12v24M12 24h24" stroke="#0052CC" stroke-width="2.5" stroke-linecap="round"/>
-                      <path d="M16 16l8 8M32 16l-8 8M16 32l8-8M32 32l-8-8" stroke="#0052CC" stroke-width="2" stroke-linecap="round" opacity=".5"/>
-                    </svg>
-                  )}
-                  {f.icon === 'connect' && (
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                      <rect width="48" height="48" rx="12" fill="#E6FCFF"/>
-                      <circle cx="15" cy="24" r="5" stroke="#00B8D9" stroke-width="2.5"/>
-                      <circle cx="33" cy="15" r="5" stroke="#00B8D9" stroke-width="2.5"/>
-                      <circle cx="33" cy="33" r="5" stroke="#00B8D9" stroke-width="2.5"/>
-                      <path d="M20 22.5l9-6.5M20 25.5l9 6.5" stroke="#00B8D9" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  )}
-                  {f.icon === 'secure' && (
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                      <rect width="48" height="48" rx="12" fill="#EAE6FF"/>
-                      <path d="M24 11l13 6v9c0 6.6-5.5 11.4-13 13C16.5 37.4 11 32.6 11 26v-9l13-6z" stroke="#6554C0" stroke-width="2.5" stroke-linejoin="round"/>
-                      <path d="M18 24l5 5 8-8" stroke="#6554C0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  )}
-                </div>
-                <h3 class="feature-title">{f.title}</h3>
-                <p class="feature-body">{f.body}</p>
-              </div>
-            ))}
+          <div class="section-head">
+            <p class="eyebrow">Why Ferx?</p>
+            <h2 id="why-title">Everything your team needs to work better.</h2>
           </div>
-        </div>
-      </section>
-
-      <!-- Solutions -->
-      <section id="solutions" class="solutions-section" aria-labelledby="solutions-heading">
-        <div class="container">
-          <header class="section-header">
-            <span class="section-eyebrow">Solutions</span>
-            <h2 id="solutions-heading" class="section-heading">For every team, every workflow</h2>
-            <p class="section-subheading">
-              Discover the right Ferx products for your team's specific needs.
-            </p>
-          </header>
-
-          <div class="solutions-grid">
-            <article class="solution-card solution-software">
-              <div class="solution-icon" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path d="M8 22L15 15l7 7 10-10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M28 15h7v7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+          <div class="why-grid">
+            <article>
+              <div class="line-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><circle cx="8" cy="16" r="3"></circle><circle cx="24" cy="8" r="3"></circle><circle cx="24" cy="24" r="3"></circle><path d="M11 15l10-6M11 17l10 6"></path></svg>
               </div>
-              <h3 class="solution-title">Software Teams</h3>
-              <p class="solution-desc">
-                Agile boards, CI/CD integrations, code reviews, and deployment tracking —
-                everything developers need to ship faster.
-              </p>
-              <ul class="solution-products" aria-label="Recommended products">
-                <li>FerxFlow</li><li>FerxDocs</li><li>FerxAI</li>
-              </ul>
-              <a href="#products" class="solution-link">Explore for software <span aria-hidden="true">→</span></a>
+              <h3>One connected workspace</h3>
+              <p>Bring planning, documentation, support, and collaboration together.</p>
             </article>
-
-            <article class="solution-card solution-it">
-              <div class="solution-icon" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <rect x="7" y="8" width="26" height="16" rx="2" stroke="white" stroke-width="2.5"/>
-                  <path d="M15 28h10M20 24v4" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-                  <circle cx="20" cy="16" r="3" stroke="white" stroke-width="2"/>
-                </svg>
+            <article>
+              <div class="line-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><rect x="5" y="8" width="9" height="16" rx="2"></rect><rect x="18" y="8" width="9" height="7" rx="2"></rect><rect x="18" y="17" width="9" height="7" rx="2"></rect></svg>
               </div>
-              <h3 class="solution-title">IT Teams</h3>
-              <p class="solution-desc">
-                Service desk, asset management, incident response, and change management
-                workflows built for modern IT operations at scale.
-              </p>
-              <ul class="solution-products" aria-label="Recommended products">
-                <li>FerxDesk</li><li>FerxFlow</li><li>FerxAI</li>
-              </ul>
-              <a href="#products" class="solution-link">Explore for IT <span aria-hidden="true">→</span></a>
+              <h3>Built for the way teams work</h3>
+              <p>Flexible tools that adapt to software, IT, and business teams.</p>
             </article>
-
-            <article class="solution-card solution-business">
-              <div class="solution-icon" aria-hidden="true">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path d="M7 32V17l13-9 13 9v15" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <rect x="15" y="21" width="10" height="11" rx="1" stroke="white" stroke-width="2"/>
-                </svg>
+            <article>
+              <div class="line-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><path d="M6 22c4-8 6-8 10-4s6 4 10-6"></path><path d="M20 8h6v6"></path></svg>
               </div>
-              <h3 class="solution-title">Business Teams</h3>
-              <p class="solution-desc">
-                Project tracking, knowledge sharing, and cross-functional alignment for
-                marketing, finance, and operations teams.
-              </p>
-              <ul class="solution-products" aria-label="Recommended products">
-                <li>FerxDocs</li><li>FerxFlow</li><li>FerxAI</li>
-              </ul>
-              <a href="#products" class="solution-link">Explore for business <span aria-hidden="true">→</span></a>
+              <h3>Ready for what’s next</h3>
+              <p>Automation and AI that help teams spend less time on busywork.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Stats -->
-      <section class="stats-section" aria-labelledby="stats-heading">
+      <section id="solutions" class="section" aria-labelledby="solutions-title">
         <div class="container">
-          <h2 id="stats-heading" class="stats-headline">Trusted by the world's best teams</h2>
-          <div class="stats-grid" role="list">
-            {stats.map((s) => (
-              <div class="stat-item" role="listitem">
-                <span class="stat-number">{s.number}</span>
-                <span class="stat-label">{s.label}</span>
-              </div>
-            ))}
+          <div class="section-head">
+            <p class="eyebrow">Solutions</p>
+            <h2 id="solutions-title">Work that fits the team in front of it</h2>
           </div>
-          <div class="logos-row" aria-label="Our customers">
-            {customers.map((c) => (
-              <span class="logo-placeholder">{c}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section id="pricing" class="cta-section" aria-labelledby="cta-heading">
-        <div class="container cta-container">
-          <h2 id="cta-heading" class="cta-heading">Ready to power your team?</h2>
-          <p class="cta-body">
-            Join 200,000+ teams that use Ferx Technologies to build, manage, and scale their work.
-            Start for free — no credit card required.
-          </p>
-          <div class="cta-actions">
-            <a href="#" class="btn btn-white btn-lg">Get started free</a>
-            <a href="#" class="btn btn-outline-white btn-lg">Book a demo</a>
+          <div class="solution-grid">
+            <article id="software-teams" class="solution solution-soft">
+              <h3>Software teams</h3>
+              <p>Plan releases, manage sprints, document decisions, and ship better products together.</p>
+              <a href={`${home}#ferxflow`}>See how it works <span aria-hidden="true">→</span></a>
+            </article>
+            <article id="it-teams" class="solution solution-it">
+              <h3>IT teams</h3>
+              <p>Organize service requests, resolve issues faster, and create a better employee support experience.</p>
+              <a href={`${home}#ferxdesk`}>See how it works <span aria-hidden="true">→</span></a>
+            </article>
+            <article id="business-teams" class="solution solution-biz">
+              <h3>Business teams</h3>
+              <p>Connect goals, projects, knowledge, and operations across the organization.</p>
+              <a href={`${home}#ferxdocs`}>See how it works <span aria-hidden="true">→</span></a>
+            </article>
           </div>
         </div>
       </section>
 
-    </main>
-
-    <!-- Footer -->
-    <footer id="resources" class="site-footer" role="contentinfo">
-      <div class="container footer-top">
-        <div class="footer-brand">
-          <a href="/" class="footer-logo-link" aria-label="Ferx Technologies — Go to homepage">
-            <svg width="32" height="32" viewBox="0 0 34 34" fill="none" aria-hidden="true">
-              <rect width="34" height="34" rx="7" fill="#0052CC"/>
-              <rect x="8" y="10" width="18" height="3" rx="1.5" fill="white"/>
-              <rect x="8" y="15.5" width="13" height="3" rx="1.5" fill="white"/>
-              <rect x="8" y="21" width="9" height="3" rx="1.5" fill="white"/>
-            </svg>
-            <span>Ferx Technologies</span>
-          </a>
-          <p class="footer-tagline">Power your team's potential.</p>
-        </div>
-
-        <nav class="footer-nav" aria-label="Footer navigation">
-          <div class="footer-col">
-            <h3 class="footer-col-heading">Products</h3>
-            <ul class="footer-links" role="list">
-              <li><a href="#ferxflow" class="footer-link">FerxFlow</a></li>
-              <li><a href="#ferxdocs" class="footer-link">FerxDocs</a></li>
-              <li><a href="#ferxdesk" class="footer-link">FerxDesk</a></li>
-              <li><a href="#ferxai" class="footer-link">FerxAI</a></li>
-              <li><a href="#products" class="footer-link">All products</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3 class="footer-col-heading">Solutions</h3>
-            <ul class="footer-links" role="list">
-              <li><a href="#solutions" class="footer-link">Software teams</a></li>
-              <li><a href="#solutions" class="footer-link">IT teams</a></li>
-              <li><a href="#solutions" class="footer-link">Business teams</a></li>
-              <li><a href="#solutions" class="footer-link">Enterprise</a></li>
-              <li><a href="#solutions" class="footer-link">Startups</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3 class="footer-col-heading">Resources</h3>
-            <ul class="footer-links" role="list">
-              <li><a href="#resources" class="footer-link">Documentation</a></li>
-              <li><a href="#resources" class="footer-link">Blog</a></li>
-              <li><a href="#resources" class="footer-link">Community</a></li>
-              <li><a href="#resources" class="footer-link">Support</a></li>
-              <li><a href="#resources" class="footer-link">System status</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h3 class="footer-col-heading">Company</h3>
-            <ul class="footer-links" role="list">
-              <li><a href="#" class="footer-link">About us</a></li>
-              <li><a href="#" class="footer-link">Careers</a></li>
-              <li><a href="#" class="footer-link">Partners</a></li>
-              <li><a href="#" class="footer-link">Contact us</a></li>
-              <li><a href="#" class="footer-link">Press</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-
-      <div class="footer-bottom">
-        <div class="container footer-bottom-inner">
-          <p class="footer-copy">© 2025 Ferx Technologies. All rights reserved.</p>
-          <ul class="footer-legal" role="list">
-            <li><a href="#" class="footer-legal-link">Privacy policy</a></li>
-            <li><a href="#" class="footer-legal-link">Terms of service</a></li>
-            <li><a href="#" class="footer-legal-link">Cookie settings</a></li>
+      <section class="proof" aria-labelledby="proof-title">
+        <div class="container">
+          <h2 id="proof-title">Teams use Ferx to keep work moving</h2>
+          <p class="proof-note">Illustrative marketing statistics for this launch site.</p>
+          <dl class="stats">
+            <div><dt>10K+ teams connected</dt><dd>Teams on the platform</dd></div>
+            <div><dt>2M+ work items managed</dt><dd>Work tracked in Ferx</dd></div>
+            <div><dt>35% faster delivery</dt><dd>Reported delivery pace</dd></div>
+            <div><dt>99.9% platform availability</dt><dd>Target availability</dd></div>
+          </dl>
+          <p class="logo-label">Example customer wordmarks</p>
+          <ul class="logos" aria-label="Example customer names">
+            <li>Northstar</li>
+            <li>Orbit Labs</li>
+            <li>Vertex</li>
+            <li>Acme Systems</li>
+            <li>Brightline</li>
           </ul>
         </div>
-      </div>
-    </footer>
+      </section>
+
+      <section class="banner" aria-labelledby="banner-title">
+        <div class="container banner-inner">
+          <h2 id="banner-title">Make work work better.</h2>
+          <p>Bring your teams, tools, and ideas together with Ferx Technologies.</p>
+          <div class="cta-row">
+            <a class="btn btn-light" href={`${home}contact`}>Start building</a>
+            <a class="btn btn-outline-light" href={`${home}contact`}>Talk to our team</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
   </body>
 </html>
-
-<script>
-  const toggle = document.getElementById('nav-toggle');
-  const menu = document.getElementById('mobile-menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      const isOpen = !menu.hidden;
-      menu.hidden = isOpen;
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-      toggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
-    });
-    menu.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        menu.hidden = true;
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open navigation menu');
-      });
-    });
-    document.addEventListener('click', e => {
-      if (!menu.hidden && !menu.contains(e.target as Node) && !toggle.contains(e.target as Node)) {
-        menu.hidden = true;
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open navigation menu');
-      }
-    });
-  }
-</script>
